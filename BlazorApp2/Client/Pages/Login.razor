@@ -1,5 +1,14 @@
 ﻿@page "/Login"
 
+@using BlazorApp2.Client.Repositories
+@using BlazorApp2.Client.Services
+@using Microsoft.AspNetCore.Components.Authorization
+
+@inject IAuthRepository authRepo
+@inject IUserAuthService userService
+@inject UserStateService userState
+@inject NavigationManager navigationManager
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-6 col-md-10">
@@ -7,19 +16,35 @@
                 <div class="padding_eight_all bg-white" dir="rtl">
                     <div class="heading_s1">
                         <h3 class="mb-30 text-center">ورود</h3>
+                        <AuthorizeView>
+                            <Authorized>
+                                <p class="text-center alert alert-success">ورود انجام شد</p>
+                            </Authorized>
+                            <NotAuthorized>
+                                @if (this.ShowError)
+                                {
+                                    <p class="text-center alert alert-danger">ورود انجام نشد</p>
+                                }
+                                else
+                                {
+                                    <p class="text-center alert alert-info">در حال بررسی</p>
+                                }
+                            </NotAuthorized>
+                        </AuthorizeView>
                     </div>
-                    <form method="post">
+                    <EditForm Model="userDataHelper" OnValidSubmit="LoginUser">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
                         <div class="form-group">
-                            <input type="text" required="" class="form-control" name="email" placeholder="ایمیل">
+                            <input type="text" required="" class="form-control" name="email" @bind-value="userDataHelper.Email" placeholder="ایمیل">
                         </div>
                         <div class="form-group">
-                            <input class="form-control" required="" type="password" name="password" placeholder="کلمه عبور">
+                            <input class="form-control" required="" type="password" name="password" @bind-value="userDataHelper.Password" placeholder="کلمه عبور">
                         </div>
-
                         <div class="form-group">
                             <button type="submit" class="btn btn-fill-out btn-block" name="login">ورود</button>
                         </div>
-                    </form>
+                    </EditForm>
                     <div class="text-muted text-center">ثبت نام نکرده اید ؟ <navlink href="/register">ثبت نام</navlink></div>
                 </div>
             </div>

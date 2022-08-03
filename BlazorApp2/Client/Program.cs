@@ -1,3 +1,7 @@
+using BlazorApp2.Client.Repositories;
+using BlazorApp2.Client.Services;
+using BlazorApp2.Shared.Helpers;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +23,20 @@ namespace BlazorApp2.Client
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+            builder.Services.AddScoped<IHttpService, HttpService>();
+            builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+            builder.Services.AddScoped<ProtectPasswordHelper>();
+            builder.Services.AddSingleton<UserStateService>();
+            builder.Services.AddOptions();
+            builder.Services.AddAuthorizationCore();
+
+            builder.Services.AddScoped<JWTService>();
+            builder.Services.AddScoped<AuthenticationStateProvider, JWTService>(
+                option => option.GetRequiredService<JWTService>()
+            );
+            builder.Services.AddScoped<IUserAuthService, JWTService>(
+                option => option.GetRequiredService<JWTService>()
+            );
             await builder.Build().RunAsync();
         }
     }
