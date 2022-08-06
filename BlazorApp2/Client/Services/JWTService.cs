@@ -68,10 +68,10 @@ namespace BlazorApp2.Client.Services
         }
         public async Task CleanUp()
         {
-            await _jsRuntime.RemoveItem(_tokenKey);
+            await _jsRuntime.RemoveItem(_tokenKey); // tu local storage token feliro pak mikne
             await _jsRuntime.RemoveItem(_expirationKey);
-            _http.DefaultRequestHeaders.Authorization = null;
-            NotifyAuthenticationStateChanged(Task.FromResult(EmptyUserData()));
+            _http.DefaultRequestHeaders.Authorization = null; // authorization header ham khali mikne
+            NotifyAuthenticationStateChanged(Task.FromResult(EmptyUserData())); // b AuthenticationState mige vaziat taghir krde va dar hal hazer hich karbari tu system nist
         }
         public AuthenticationState BuildAuth(string jwtToken)
         {

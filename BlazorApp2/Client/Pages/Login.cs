@@ -23,10 +23,12 @@ namespace BlazorApp2.Client.Pages
 
         private async Task LoginUser()
         {
+            generateNewToken.Dispose();
             var response = await authRepo.Login(userDataHelper);
             var authentication = await authenticationState;
             if (response.Status)
             {
+                generateNewToken.Initiate();
                 await userService.Login(response);
                 userState.SetUserInfo(authentication.User.Claims.ToList());
                 navigationManager.NavigateTo("/");

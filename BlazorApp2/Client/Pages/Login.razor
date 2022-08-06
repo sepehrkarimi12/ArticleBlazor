@@ -1,6 +1,5 @@
 ﻿@page "/Login"
 
-@using BlazorApp2.Client.Repositories
 @using BlazorApp2.Client.Services
 @using Microsoft.AspNetCore.Components.Authorization
 
@@ -8,6 +7,11 @@
 @inject IUserAuthService userService
 @inject UserStateService userState
 @inject NavigationManager navigationManager
+@inject GenerateNewToken generateNewToken
+
+@*@attribute [Authorize]
+@attribute [Authorize(Roles = "admin")]
+@attribute [Authorize(Roles = "user")]*@
 
 <div class="container">
     <div class="row justify-content-center">

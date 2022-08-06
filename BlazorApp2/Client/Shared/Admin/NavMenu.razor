@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">پنل مدیریت</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+@*<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">*@
+<div>
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span>
+                نمایش سایت
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/admin" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span>
+                داشبورد
+            </NavLink>
+        </li>
+        <AuthorizeView Roles="admin">
+            <Authorized>
+                <li class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/users/create">
+                <span class="oi oi-plus" aria-hidden="true"></span>
+                ثبت کاربر جدید
+            </NavLink>
+        </li>
+         <li class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/users/list">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>
+                لیست کاربران
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/categories/create">
+                <span class="oi oi-plus" aria-hidden="true"></span>
+                ثبت دسته بندی
+            </NavLink>
+        </li>
+         <li class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/categories/list">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>
+                لیست دسته بندی
+            </NavLink>
+        </li>
+            </Authorized>
+        </AuthorizeView>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/blogs/create">
+                <span class="oi oi-plus" aria-hidden="true"></span>
+                ثبت مقاله
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/blogs/list">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>
+                لیست مقاله ها
+            </NavLink>
+        </li>
+       
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/comments">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>
+                لیست نظرات
+            </NavLink>
+        </li>
+    </ul>
+</div>

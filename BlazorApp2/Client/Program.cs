@@ -27,9 +27,13 @@ namespace BlazorApp2.Client
             builder.Services.AddScoped<IAuthRepository, AuthRepository>();
             builder.Services.AddScoped<ProtectPasswordHelper>();
             builder.Services.AddSingleton<UserStateService>();
+            builder.Services.AddScoped<GenerateNewToken>();
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
 
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            //builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            //builder.Services.AddScoped<IBlogRepository, BlogRepository>();
             builder.Services.AddScoped<JWTService>();
             builder.Services.AddScoped<AuthenticationStateProvider, JWTService>(
                 option => option.GetRequiredService<JWTService>()
@@ -37,6 +41,7 @@ namespace BlazorApp2.Client
             builder.Services.AddScoped<IUserAuthService, JWTService>(
                 option => option.GetRequiredService<JWTService>()
             );
+            //builder.Services.AddFileReaderService();
             await builder.Build().RunAsync();
         }
     }

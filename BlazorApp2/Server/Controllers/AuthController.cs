@@ -75,11 +75,13 @@ namespace BlazorApp2.Server.Controllers
                 new Claim("UserId", user.Id.ToString()),
                 new Claim(ClaimTypes.Role , user.Role.EnCaption)
             };
+                _config["jwt:key"] = "2Hw9hskCNlK7XSumGcD1QePRoyaJLvtEdMjgxApO3YnFr5ifUTZBW6bIq48zV0";
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["jwt:key"]));
                 var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
 
-                var expiration = DateTime.Now.AddDays(30);
+                //var expiration = DateTime.Now.AddDays(30);
+                var expiration = DateTime.Now.AddMinutes(1);
                 JwtSecurityToken token = new JwtSecurityToken(
                     issuer: null,
                     audience: null,

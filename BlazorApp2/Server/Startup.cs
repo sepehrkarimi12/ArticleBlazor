@@ -30,6 +30,7 @@ namespace BlazorApp2.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddControllersWithViews();
             services.AddControllersWithViews().AddJsonOptions(x =>
               x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
@@ -38,6 +39,7 @@ namespace BlazorApp2.Server
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connection));
             services.AddScoped<ProtectPasswordHelper>();
             services.AddHttpContextAccessor();
+            Configuration["jwt:key"] = "2Hw9hskCNlK7XSumGcD1QePRoyaJLvtEdMjgxApO3YnFr5ifUTZBW6bIq48zV0";
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -46,10 +48,12 @@ namespace BlazorApp2.Server
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    //IssuerSigningKey = new SymmetricSecurityKey(
-                    //Encoding.UTF8.GetBytes(Configuration["jwt:key"])),
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(Configuration["jwt:key"])),
                     ClockSkew = TimeSpan.Zero
                 });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
