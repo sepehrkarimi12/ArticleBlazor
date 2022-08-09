@@ -16,6 +16,7 @@ namespace BlazorApp2.Server.Context
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,8 @@ namespace BlazorApp2.Server.Context
             modelBuilder.Entity<User>().HasOne(p => p.Role).WithMany(p => p.Users).HasForeignKey(p => p.RoleId);
 
             modelBuilder.Entity<User>().HasOne(p => p.Status);
+
+            modelBuilder.Entity<Blog>().HasOne(p => p.Category).WithMany(p => p.Blogs).HasForeignKey(p => p.CategoryId);
 
             base.OnModelCreating(modelBuilder);
         }

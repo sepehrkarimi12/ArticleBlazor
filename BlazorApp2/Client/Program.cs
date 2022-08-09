@@ -32,7 +32,7 @@ namespace BlazorApp2.Client
             builder.Services.AddAuthorizationCore();
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-            //builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             //builder.Services.AddScoped<IBlogRepository, BlogRepository>();
             builder.Services.AddScoped<JWTService>();
             builder.Services.AddScoped<AuthenticationStateProvider, JWTService>(

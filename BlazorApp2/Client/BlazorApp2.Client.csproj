@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Admin\BlogComponents\**" />
+    <Content Remove="Pages\Admin\BlogComponents\**" />
+    <EmbeddedResource Remove="Pages\Admin\BlogComponents\**" />
+    <None Remove="Pages\Admin\BlogComponents\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.17" PrivateAssets="all" />
@@ -13,10 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\BlazorApp2.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Admin\BlogComponents\" />
   </ItemGroup>
 
 </Project>

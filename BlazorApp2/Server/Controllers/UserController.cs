@@ -51,7 +51,14 @@ namespace BlazorApp2.Server.Controllers
 
             _appDbContext.Users.Add(user);
 
-            await _appDbContext.SaveChangesAsync();
+            try
+            {
+                await _appDbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("**** " + ex.Message);
+            }
 
             return true;
         }

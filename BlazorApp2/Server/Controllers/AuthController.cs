@@ -68,13 +68,13 @@ namespace BlazorApp2.Server.Controllers
             private async Task<TokenDataHelper> GenerateToken(User user)
             {
                 var claims = new List<Claim>()
-            {
-                new Claim(ClaimTypes.Name , user.Name),
-                new Claim("LastName" , user.LastName),
-                new Claim(ClaimTypes.Email , user.Email),
-                new Claim("UserId", user.Id.ToString()),
-                new Claim(ClaimTypes.Role , user.Role.EnCaption)
-            };
+                    {
+                        new Claim(ClaimTypes.Name , user.Name),
+                        new Claim("LastName" , user.LastName),
+                        new Claim(ClaimTypes.Email , user.Email),
+                        new Claim("UserId", user.Id.ToString()),
+                        new Claim(ClaimTypes.Role , user.Role.EnCaption)
+                    };
                 _config["jwt:key"] = "2Hw9hskCNlK7XSumGcD1QePRoyaJLvtEdMjgxApO3YnFr5ifUTZBW6bIq48zV0";
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["jwt:key"]));
                 var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
