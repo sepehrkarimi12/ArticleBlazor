@@ -80,8 +80,8 @@ namespace BlazorApp2.Server.Controllers
                 var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
 
-                //var expiration = DateTime.Now.AddDays(30);
-                var expiration = DateTime.Now.AddMinutes(1);
+                var expiration = DateTime.Now.AddDays(30);
+                //var expiration = DateTime.Now.AddMinutes(1);
                 JwtSecurityToken token = new JwtSecurityToken(
                     issuer: null,
                     audience: null,
