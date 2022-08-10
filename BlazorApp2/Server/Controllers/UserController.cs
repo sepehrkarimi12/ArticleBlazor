@@ -2,6 +2,7 @@
 using BlazorApp2.Shared.DTO;
 using BlazorApp2.Shared.Entities;
 using BlazorApp2.Shared.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -37,6 +38,7 @@ namespace BlazorApp2.Server.Controllers
             }
         }
 
+        //[Authorize(Roles = "admin")]
         [HttpPost("createUser")]
         public async Task<bool> CreateUser([FromBody] User user)
         {

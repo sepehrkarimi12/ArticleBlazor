@@ -39,7 +39,7 @@ namespace BlazorApp2.Server
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connection));
             services.AddScoped<ProtectPasswordHelper>();
             services.AddHttpContextAccessor();
-            Configuration["jwt:key"] = "2Hw9hskCNlK7XSumGcD1QePRoyaJLvtEdMjgxApO3YnFr5ifUTZBW6bIq48zV0";
+            //Configuration["jwt:key"] = "2Hw9hskCNlK7XSumGcD1QePRoyaJLvtEdMjgxApO3YnFr5ifUTZBW6bIq48zV0";
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 options.TokenValidationParameters = new TokenValidationParameters
