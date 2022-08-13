@@ -15,7 +15,7 @@ namespace BlazorApp2.Shared.Entities
         [Required(ErrorMessage = "وارد کردن توضیحات الزامی است")]
         public string Description { get; set; }
         public long BlogId { get; set; }
-        public long UserId { get; set; }
+        public long? UserId { get; set; } = null;
         public long ReplayTo { get; set; } = 0;
         public virtual Blog Blog { get; set; }
         public virtual User User { get; set; }
