@@ -31,6 +31,8 @@ namespace BlazorApp2.Server.Context
 
             modelBuilder.Entity<Blog>().HasOne(p => p.Category).WithMany(p => p.Blogs).HasForeignKey(p => p.CategoryId);
 
+            modelBuilder.Entity<Comment>().HasOne(p => p.User).WithMany(p => p.Comments).HasForeignKey(p => p.UserId).OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(modelBuilder);
         }
     }

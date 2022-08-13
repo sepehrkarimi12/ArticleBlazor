@@ -11,6 +11,5 @@ namespace BlazorApp2.Shared.Entities
         public long Id { get; set; }
         public string Caption { get; set; }
         public string Value { get; set; }
-        //public virtual ICollection<User> Users { get; set; }
     }
 }
